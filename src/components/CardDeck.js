@@ -10,7 +10,7 @@ export default class CardDeck extends Component {
       cards: [],
       deck: ""
     };
-    this.handleRequestClick = this.handleRequestClick.bind(this);
+    this.getCard = this.getCard.bind(this);
   }
 
   async componentDidMount() {
@@ -21,22 +21,29 @@ export default class CardDeck extends Component {
     });
   }
 
-  async handleRequestClick() {
+  async getCard() {
     const id = this.state.deck.deck_id;
-    console.log(id);
-    const response = await axios.get(`${API_BASE_URL}/${id}/draw/`);
-    // console.log(response.data.cards);
-    const card = {...response.data.cards, randNum: Math.ceil(Math.random() * 45) * (Math.round(Math.random()) ? 1 : -1)};
-    this.setState((prevState) => ({
-      cards: [...prevState.cards, card],
-      randomNumber: Math.ceil(Math.random() * 45) * (Math.round(Math.random()) ? 1 : -1)
-    }));
+    try {
+      const response = await axios.get(`${API_BASE_URL}/${id}/draw/`);
+      if (!response.data.success) {
+        throw new Error('No card remaining')
+      }
+      const card = {...response.data.cards, randNum: Math.ceil(Math.random() * 45) * (Math.round(Math.random()) ? 1 : -1)};
+      // console.log(response.data.cards);
+      this.setState((prevState) => ({
+        cards: [...prevState.cards, card],
+        deck: response.data,
+        randomNumber: Math.ceil(Math.random() * 45) * (Math.round(Math.random()) ? 1 : -1)
+      }));
+    } catch(err) {
+      alert(err)
+    }
   }
 
   render() {
     return (
       <div className="CardDeck">
-        <h1 onClick={this.handleRequestClick}>Gimme a card!</h1>
+        <h1 onClick={this.getCard}>Gimme a card!</h1>
         <div className="cards">
           {this.state.cards !== [] &&
             this.state.cards.map((card) => (
