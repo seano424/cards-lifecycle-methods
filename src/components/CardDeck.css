@@ -1,0 +1,28 @@
+.CardDeck img {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.CardDeck h1 {
+  background: snow;
+  color: darkslategrey;
+  box-shadow: 0px 0px 2px gainsboro;
+  padding: 7px;
+  width: fit-content;
+  margin: 40px auto;
+  border-radius: 4px;
+}
+
+.CardDeck h1:hover {
+  background-color: lightsalmon;
+  cursor: pointer;
+  user-select: none;
+}
+
+.CardDeck .cards {
+  margin-top: 5rem;
+}
