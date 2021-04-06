@@ -1,3 +1,7 @@
+.CardDeck {
+  margin-top: 5rem;
+}
+
 .CardDeck img {
   position: absolute;
   margin-left: auto;
@@ -7,17 +11,16 @@
   text-align: center;
 }
 
-.CardDeck h1 {
-  background: snow;
+.CardDeck h6 {
+  background: aqua;
   color: darkslategrey;
-  box-shadow: 0px 0px 2px gainsboro;
   padding: 7px;
   width: fit-content;
   margin: 40px auto;
   border-radius: 4px;
 }
 
-.CardDeck h1:hover {
+.CardDeck h6:hover {
   background-color: lightsalmon;
   cursor: pointer;
   user-select: none;
@@ -25,4 +28,17 @@
 
 .CardDeck .cards {
   margin-top: 5rem;
+}
+
+.CardDeck .icons {
+  display: flex;
+  justify-content: center;
+}
+
+.CardDeck .icons i {
+  align-self: center;
+}
+
+.CardDeck .icons h2 {
+  margin: .5rem;
 }
